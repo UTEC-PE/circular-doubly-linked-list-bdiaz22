@@ -6,7 +6,7 @@
 #include "list.h"
 
 using namespace std;
-
+/*
 #define MIN 100
 #define MAX 500
 
@@ -19,8 +19,17 @@ using namespace std;
 int generateRandomInt(int min, int max);
 void insertIntoList(List<int> &numbers);
 void removeFromList(List<int> &numbers);
-
+*/
 int main(int argc, char *argv[]) {
+    List<int> myList;
+    myList.push_back(13);
+    cout<< myList.front()<<"\n";
+    myList.push_front(12);
+    cout<< myList.front()<<"\n";
+    cout<< myList.empty()<<"\n";
+    cout<< myList.size()<<"\n";
+    return 0;
+    /*
     cout << "===========================================================" << endl;
     cout << "\tDouble Linked Circular List Practice" << endl;
     cout << "===========================================================" << endl << endl;
@@ -75,15 +84,17 @@ int main(int argc, char *argv[]) {
 
     system("read");
     return EXIT_SUCCESS;
+    */
 }
-
+/*
 int generateRandomInt(int min, int max) {
     mt19937 rng;
     rng.seed(random_device()());
     uniform_int_distribution<mt19937::result_type> distribution(min, max); 
     return distribution(rng);
 }
-
+*/
+/*
 void insertIntoList(List<int> &numbers) {
     const int numberToInsert = generateRandomInt(0, 100);
 
@@ -93,11 +104,13 @@ void insertIntoList(List<int> &numbers) {
         case PUSH_BACK: numbers.push_back(numberToInsert); break;
     }
 } 
-
+*/
+/*
 void removeFromList(List<int> &numbers) {
     const int action = generateRandomInt(2, 3);
     switch (action) {
         case POP_FRONT: numbers.pop_front(); break;
         case POP_BACK: numbers.pop_back(); break;
     }
-} 
+
+}*/ 
