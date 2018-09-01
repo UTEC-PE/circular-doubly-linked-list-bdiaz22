@@ -79,11 +79,37 @@ class List {
         }
         void pop_front()
         {
+            Node<T> *temp = start;
+            if(start == start->next)
+            {
+                start = nullptr;
+                temp->killSelf();
+            }
+            else
+            {
 
+                start->prev->next = start-> next;
+                start = start->next;
+                start->prev = temp->prev;
+                temp->killSelf();
+                nodes--;
+            }
         }
-        void pop_back()
-        {
-
+        void pop_back(
+)        {
+            Node<T> *temp = start->prev;
+            if(nodes == 1)
+            {
+                start = nullptr;
+                temp->killSelf();
+            }
+            else
+            {
+                temp->prev->next = start;
+                start->prev = temp->prev;
+                temp->killSelf();
+                nodes--;
+            }
         }
         T get(int position)
         {
@@ -100,10 +126,31 @@ class List {
             }
 
         }
-        void concat(List<T> &other);
+        void concat(List<T> &other)
+        {
+            if(!other.start)
+            {
+                if(!start)
+                    throw "Ambas listas vacias";
+
+                throw "Segunda lista vacia";
+            }
+            else if(!start)
+            {
+                start = other.start;
+            }
+            else{
+            Node<T> *tail = other.start->prev;
+            start->prev->next = other.start;
+            tail->next = start;
+            other.start->prev = start->prev;
+            start->prev = tail;
+            nodes += other.nodes;
+            }
+        }
         bool empty()
         {
-            return start = nullptr;
+            return start == nullptr;
         }
         int size()
         {
@@ -111,11 +158,37 @@ class List {
         }
         void clear()
         {
-
+            Node<T> *temp= start->next;
+            while(temp != start)
+            {
+                Node<T> *eliminable = temp;
+                temp = temp->next;
+                eliminable->killSelf();
+            }
+            start = nullptr;
+            temp->killSelf();
+            nodes = 0;
         }
 
-        Iterator<T> begin();
-        Iterator<T> end();
+        Iterator<T> begin()
+        {
+            if(!start)
+                throw "Lista Vacia";
+            else{
+            Iterator<T> first(start);
+            return first;
+            }
+        }
+        Iterator<T> end()
+        {
+            if(!start)
+                throw "Lista Vacia";
+            else{
+            Iterator<T> last(start->prev);
+            return last;
+
+            }
+        }
 
         ~List(){}
 };
