@@ -23,7 +23,7 @@ class List {
 
         T front()
         {
-            return start->data; 
+            return start->data;  // Falta controlar el vacío como en el back
         }
         T back()
         {       
@@ -39,7 +39,7 @@ class List {
 
             if(!start)
             {
-                start =  new Node<T>;
+                start =  new Node<T>; 
                 start->data = value;
                 start->next = start;
                 start->prev = start;
@@ -124,6 +124,7 @@ class List {
                     return temp -> data;
                 temp = temp->next;
             }
+            // Warning por return
 
         }
         void concat(List<T> &other)
@@ -133,7 +134,7 @@ class List {
                 if(!start)
                     throw "Ambas listas vacias";
 
-                throw "Segunda lista vacia";
+                throw "Segunda lista vacia"; // Si la otra está vacía solo retorna la lista
             }
             else if(!start)
             {
@@ -190,7 +191,7 @@ class List {
             }
         }
 
-        ~List(){}
+        ~List(){} // No hay destructor
 };
 
 #endif
